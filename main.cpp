@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <SFML/Window.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Vertex.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/Graphics/Color.hpp>
@@ -9,16 +8,9 @@
 #include <SFML/System/Thread.hpp>
 #include "spins.hpp"
 #include "math.hpp"
-// #include "slider.hpp"
-#include "button.hpp"
-#include "button.cpp"
 #include <array>
 #include <algorithm>
 #include <chrono>
-// #include <thread>
-// #include <boost/thread/thread.hpp>
-// #include <boost/thread/scoped_thread.hpp>
-// #include <X11/Xlib.h> for XInitThreads()
 
 int main()
 {
@@ -58,14 +50,6 @@ int main()
     mag_display.setCharacterSize(15);
     auto init = std::chrono::steady_clock::now();
     std::chrono::duration<double, std::milli> step;
-
-    // Slider slid(10., 20.);
-    // slid.set_position(sf::Vector2f(800.f, 100.f));
-    // initialize button
-    std::string str = "Start";
-    Button<std::string> but(str, font);
-    but.setPosition(sf::Vector2f(800.f, 100.f));
-
     while (window.isOpen())
     {
         // Process events
@@ -85,27 +69,21 @@ int main()
             switch (sp.get_state())
             {
             case 1 :
-                //rec.setFillColor(sf::Color(240,240,240,255));
                 rec.color = sf::Color::White;
                 break;
             case -1 :
-                //rec.setFillColor(sf::Color::Black);
                 rec.color = sf::Color::Black;
                 break;
             default:
                 break;
             }
-            //window.draw(rec);
             return rec; });
-        // it = slots.begin();
         init = std::chrono::steady_clock::now();
         window.draw(slots);
         step = std::chrono::steady_clock::now() - init;
         window.draw(mag_display);
-        // window.draw(but);
         window.display();
         math::evolution(system, field, temp, 0, 250000);
-        // return EXIT_SUCCESS;
     }
     return EXIT_SUCCESS;
 }
