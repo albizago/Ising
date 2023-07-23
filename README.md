@@ -6,6 +6,6 @@ The graphical representation of the model, implemented with **SFML**, consists o
 
 The compilation is carried out using **CMake**.
 <p align="center">
-<img src="demo_image.png" width="500" height="500">
+<img src="demo_image.png" width="500" >
 </br> <i> Output example with null external field and subcritical temperature </i>
 </p>
